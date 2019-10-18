@@ -18,21 +18,37 @@ class Reader extends Component {
 
   state = {
     indexArray: 0,
-    allPages: this.props.publications.length,
+    currentPablication: this.props.publications[0],
   };
 
-  handleChangeIdxIncrement = () => {
+  handleChangeIdxIncrement = async () => {
     if (this.state.indexArray + 1 >= this.state.allPages) return;
-    this.setState(prevState => ({ indexArray: prevState.indexArray + 1 }));
+
+    await this.setState(prevState => ({
+      indexArray: prevState.indexArray + 1,
+    }));
+
+    this.findCurrentPablication();
   };
 
-  handleChangeIdxArrayDecrement = () => {
+  handleChangeIdxArrayDecrement = async () => {
     if (this.state.indexArray <= 0) return;
-    this.setState(prevState => ({ indexArray: prevState.indexArray - 1 }));
+
+    await this.setState(prevState => ({
+      indexArray: prevState.indexArray - 1,
+    }));
+
+    this.findCurrentPablication();
+  };
+
+  findCurrentPablication = async () => {
+    const { indexArray } = this.state;
+
+    this.setState({ currentPablication: this.props.publications[indexArray] });
   };
 
   render() {
-    const { indexArray, allPages } = this.state;
+    const { indexArray, currentPablication } = this.state;
     const { publications } = this.props;
 
     return (
@@ -41,12 +57,12 @@ class Reader extends Component {
           onChangeIdxIncrement={this.handleChangeIdxIncrement}
           onChangeIdxDecrement={this.handleChangeIdxArrayDecrement}
           indexArray={indexArray}
-          allPages={allPages}
+          allPages={publications.length}
         />
 
-        <Counter indexArray={indexArray} allPages={allPages} />
+        <Counter indexArray={indexArray + 1} allPages={publications.length} />
 
-        <Publication publications={publications} indexArray={indexArray} />
+        <Publication pablication={currentPablication} />
       </div>
     );
   }

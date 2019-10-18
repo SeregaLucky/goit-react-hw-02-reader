@@ -7,22 +7,19 @@ import styles from './Publication.module.css';
 /*
  * COMPONENT
  */
-const Publication = ({ publications, indexArray }) => (
+const Publication = ({ pablication }) => (
   <article className={styles.publication}>
-    <h2>{publications[indexArray].title}</h2>
-    <p>{publications[indexArray].text}</p>
+    <h2>{pablication.title}</h2>
+    <p>{pablication.text}</p>
   </article>
 );
 
 Publication.propTypes = {
-  publications: T.arrayOf(
-    T.shape({
-      id: T.string.isRequired,
-      title: T.string.isRequired,
-      text: T.string.isRequired,
-    }).isRequired,
-  ).isRequired,
-  indexArray: T.number.isRequired,
+  pablication: T.shape({
+    id: T.string.isRequired,
+    title: T.string.isRequired,
+    text: T.string.isRequired,
+  }).isRequired,
 };
 
 export default Publication;

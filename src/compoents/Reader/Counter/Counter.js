@@ -9,7 +9,7 @@ import styles from './Counter.module.css';
  */
 const Counter = ({ indexArray, allPages }) => (
   <p className={styles.counter}>
-    {indexArray + 1}/{allPages}
+    {indexArray}/{allPages}
   </p>
 );
 
