@@ -3,7 +3,6 @@ import React from 'react';
 import T from 'prop-types';
 /* import - CSS */
 import styles from './Controls.module.css';
-/* import - COMPONENT */
 
 /*
  * COMPONENT
