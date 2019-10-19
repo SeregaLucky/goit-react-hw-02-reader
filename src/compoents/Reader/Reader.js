@@ -18,7 +18,6 @@ class Reader extends Component {
 
   state = {
     indexArray: 0,
-    currentPablication: this.props.publications[0],
   };
 
   handleChangeIdxIncrement = async () => {
@@ -27,8 +26,6 @@ class Reader extends Component {
     await this.setState(prevState => ({
       indexArray: prevState.indexArray + 1,
     }));
-
-    this.findCurrentPablication();
   };
 
   handleChangeIdxArrayDecrement = async () => {
@@ -37,18 +34,10 @@ class Reader extends Component {
     await this.setState(prevState => ({
       indexArray: prevState.indexArray - 1,
     }));
-
-    this.findCurrentPablication();
-  };
-
-  findCurrentPablication = async () => {
-    const { indexArray } = this.state;
-
-    this.setState({ currentPablication: this.props.publications[indexArray] });
   };
 
   render() {
-    const { indexArray, currentPablication } = this.state;
+    const { indexArray } = this.state;
     const { publications } = this.props;
 
     return (
@@ -62,7 +51,7 @@ class Reader extends Component {
 
         <Counter indexArray={indexArray + 1} allPages={publications.length} />
 
-        <Publication pablication={currentPablication} />
+        <Publication pablication={publications[indexArray]} />
       </div>
     );
   }
