@@ -20,18 +20,18 @@ class Reader extends Component {
     indexArray: 0,
   };
 
-  handleChangeIdxIncrement = async () => {
+  handleChangeIdxIncrement = () => {
     if (this.state.indexArray + 1 >= this.state.allPages) return;
 
-    await this.setState(prevState => ({
+    this.setState(prevState => ({
       indexArray: prevState.indexArray + 1,
     }));
   };
 
-  handleChangeIdxArrayDecrement = async () => {
+  handleChangeIdxArrayDecrement = () => {
     if (this.state.indexArray <= 0) return;
 
-    await this.setState(prevState => ({
+    this.setState(prevState => ({
       indexArray: prevState.indexArray - 1,
     }));
   };
